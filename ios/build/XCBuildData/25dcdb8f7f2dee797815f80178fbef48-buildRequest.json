@@ -1,0 +1,67 @@
+{
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "2a4cbb22a4260621114bbfa46bb66c9288a783a885d8b0b3beb2e9f90bde3f49"
+    },
+    {
+      "guid" : "2a4cbb22a4260621114bbfa46bb66c92affeeb1ee64a1ddcb478a82b6a5d752c"
+    }
+  ],
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64e",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos14.5",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "arm64e"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/ach/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/ach/Library/Developer/Xcode/DerivedData/Runner-bfylojsthrjtsjanbooggaodpcys/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/ach/Library/Developer/Xcode/DerivedData/Runner-bfylojsthrjtsjanbooggaodpcys/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "SDKROOT" : "iphoneos14.5"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "COLOR_DIAGNOSTICS" : "YES",
+          "diagnostic_message_length" : "251",
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "test",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

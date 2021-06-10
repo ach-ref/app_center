@@ -1,14 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:appcenter/appcenter.dart';
-import 'package:appcenter_analytics/appcenter_analytics.dart';
+// import 'package:appcenter/appcenter.dart';
+// import 'package:appcenter_analytics/appcenter_analytics.dart';
+// import 'package:appcenter_crashes/appcenter_crashes.dart';
 
 void main() async {
-  final ios = defaultTargetPlatform == TargetPlatform.iOS;
-  final appSecret = ios
-      ? '9adbb840-86dc-49e8-bde0-a138990a7adf'
-      : 'd660c452-b605-4b3e-8465-cd7019e2eadb';
-  await AppCenter.start(appSecret, [AppCenterAnalytics.id]);
+  // final ios = defaultTargetPlatform == TargetPlatform.iOS;
+  // final appSecret = ios
+  //     ? '9adbb840-86dc-49e8-bde0-a138990a7adf'
+  //     : 'd660c452-b605-4b3e-8465-cd7019e2eadb';
+  // await AppCenter.start(appSecret, [AppCenterAnalytics.id]);
   runApp(MyApp());
 }
 
@@ -106,12 +107,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
+              key: const Key('counter'),
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        key: const Key('increment'),
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),

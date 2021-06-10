@@ -5,6 +5,12 @@ set -e
 # debug log
 set -x
 
+# build integration test
+flutter build ios integration_test/increment_test.dart --debug
+
+# change dir to ios subfolder
+cd ios
+
 # delete the derived data folder if it exists
 rm -fr DerivedData
 

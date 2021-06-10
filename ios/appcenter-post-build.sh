@@ -5,14 +5,9 @@ set -e
 # debug log
 set -x
 
-# install flutter
-pwd
+# re export flutter PATH
 cd ..
-git clone -b beta https://github.com/flutter/flutter.git
 export PATH=`pwd`/flutter/bin:$PATH
-
-flutter channel stable
-flutter doctor
 
 # build integration test
 flutter build ios integration_test/increment_test.dart --debug

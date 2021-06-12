@@ -10,7 +10,7 @@ cd ..
 export PATH=`pwd`/flutter/bin:$PATH
 
 # build integration test
-flutter build ios integration_test/increment_test.dart --debug
+flutter build ios integration_test/increment_test.dart --release
 
 # change dir to ios subfolder
 cd ios
@@ -19,7 +19,7 @@ cd ios
 rm -fr DerivedData
 
 # build for testing
-xcodebuild build-for-testing -sdk "iphonesimulator14.4" -workspace Runner.xcworkspace -scheme Runner -config Debug -derivedDataPath DerivedData ARCHS="x86_64" VALID_ARCHS="x86_64" 
+xcodebuild build-for-testing -sdk "iphoneos" -workspace Runner.xcworkspace -scheme Runner -config Release -derivedDataPath DerivedData
 
 # test
-xcodebuild test-without-building -xctestrun DerivedData/Build/Products/Runner_iphonesimulator14.4-x86_64.xctestrun -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max'
+xcodebuild test-without-building -xctestrun DerivedData/Build/Products/Runner_iphoneos14.4-arm64.xctestrun -destination 'platform=iOS,name=iPhone 12 Pro Max'

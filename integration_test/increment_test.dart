@@ -19,6 +19,8 @@ void main() {
 
       await tester.pumpAndSettle();
 
+      await tester.pump(Duration(seconds: 3));
+
       expect(find.text('1'), findsOneWidget);
     },
   );

@@ -60,4 +60,19 @@ dependencies {
     def appCenterSdkVersion = '4.1.0'
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
+    afterEvaluate {
+        android.productFlavors.all { flavor ->
+            def debugLintTask = tasks.findByName("lint${flavor.name.capitalize()}Debug")
+            def releaseLintTask = tasks.findByName("lint${flavor.name.capitalize()}Release")
+
+            if (debugLintTask != null) {
+                debugLintTask.dependsOn ':flutter:assemble'
+            }
+
+            if (releaseLintTask != null) {
+                releaseLintTask.dependsOn ':flutter:assemble'
+            }
+        }
+    }
 }

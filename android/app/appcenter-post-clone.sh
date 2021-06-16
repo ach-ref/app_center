@@ -23,6 +23,9 @@ echo "Installed flutter to `pwd`/flutter"
 # flutter build apk --profile
 flutter build apk --release
 
+# unit and widget tests
+flutter test
+
 # if you need build bundle (AAB) in addition to your APK, uncomment line below and last line of this script.
 #flutter build appbundle --release --build-number $APPCENTER_BUILD_ID
 

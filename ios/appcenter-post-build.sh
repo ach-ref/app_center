@@ -40,13 +40,12 @@ zip -r ios_tests.zip Release-iphoneos Runner_iphoneos$DEV_TARGET-arm64.xctestrun
 ######################### google cloud testing
 
 # download google cloud sdk
-echo "/////////////////////// $APPCENTER_SOURCE_DIRECTORY"
 cd $APPCENTER_SOURCE_DIRECTORY
 curl -o google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-345.0.0-darwin-x86_64.tar.gz
 # unpack
 tar -xf google-cloud-sdk.tar.gz
 # auth
-echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+printf "$SERVICE_ACCOUNT" > /tmp/$CI_PIPELINE_ID.json
 ./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
 # set the project
 ./google-cloud-sdk/bin/gcloud --quiet config set project $PROJECT_ID

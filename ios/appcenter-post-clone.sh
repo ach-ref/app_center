@@ -12,8 +12,9 @@ curl -o google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid
 tar -xf google-cloud-sdk.tar.gz
 # auth
 echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
-cat /tmp/$CI_PIPELINE_ID.json
-./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+cat /tmp/$CI_PIPELINE_ID.json | sed -e 's/\\\"/\"/g' > /tmp/test.json
+echo /tmp/test.json
+./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file /tmp/test.json
 
 
 cd $APPCENTER_SOURCE_DIRECTORY

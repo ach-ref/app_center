@@ -16,6 +16,3 @@ flutter doctor
 echo "Installed flutter to `pwd`/flutter"
 
 flutter build ios --release --no-codesign
-
-# unit and widget tests
-flutter test

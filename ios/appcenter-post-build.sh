@@ -5,9 +5,23 @@ set -e
 # debug log
 set -x
 
-# re export flutter PATH
+# vars
+DERIVED_DATA="DerivedData"
+PRODUCT="DerivedData/Build/Products"
+DEV_TARGET="14.5"
+
+# re-export flutter PATH
 cd ..
 export PATH=`pwd`/flutter/bin:$PATH
+
+
+######################### Unit & Widget testing
+
+# run unit and widget tests
+flutter test
+
+
+######################### Prepare Integration tests
 
 # build integration test
 flutter build ios integration_test/increment_test.dart --release
@@ -15,11 +29,36 @@ flutter build ios integration_test/increment_test.dart --release
 # change dir to ios subfolder
 cd ios
 
-# delete the derived data folder if it exists
-rm -fr DerivedData
-
 # build for testing
-xcodebuild build-for-testing -sdk "iphoneos" -workspace Runner.xcworkspace -scheme Runner -config Release -derivedDataPath DerivedData
+rm -fr $DERIVED_DATA
+xcodebuild build-for-testing -sdk "iphoneos$DEV_TARGET" -workspace Runner.xcworkspace -scheme Runner -config Flutter/Release.xcconfig -derivedDataPath $DERIVED_DATA
+# archive the build
+cd $PRODUCT
+zip -r ios_tests.zip Release-iphoneos Runner_iphoneos$DEV_TARGET-arm64.xctestrun
 
-# test
-xcodebuild test-without-building -xctestrun DerivedData/Build/Products/Runner_iphoneos14.4-arm64.xctestrun -destination 'platform=iOS,name=iPhone 12 Pro Max'
+
+######################### google cloud testing
+
+# download google cloud sdk
+curl -o google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-345.0.0-darwin-x86_64.tar.gz
+# unpack
+tar -xf google-cloud-sdk.tar.gz
+# auth
+echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+# set the project
+./google-cloud-sdk/bin/gcloud --quiet config set project $PROJECT_ID
+# make sure the tool results api is enabled
+./google-cloud-sdk/bin/gcloud services enable toolresults.googleapis.com
+# upload and run the test
+./google-cloud-sdk/bin/gcloud firebase test ios run --test $PRODUCT/ios_tests.zip --device model=iphone11pro,version=14.1,locale=fr_FR,orientation=portrait
+
+
+######################### cleaning
+
+# delete flutter dir
+rm -fr flutter
+# delete derived data
+rm -fr $DERIVED_DATA
+# delete gcloud key file
+rm /tmp/$CI_PIPELINE_ID.json

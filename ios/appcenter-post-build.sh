@@ -46,7 +46,7 @@ curl -o google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid
 # unpack
 tar -xf google-cloud-sdk.tar.gz
 # auth
-echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+echo "$SERVICE_ACCOUNT" > /tmp/$CI_PIPELINE_ID.json
 ./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
 # set the project
 ./google-cloud-sdk/bin/gcloud --quiet config set project $PROJECT_ID

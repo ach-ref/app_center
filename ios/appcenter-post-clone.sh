@@ -6,7 +6,7 @@ set -e
 # debug log
 set -x
 
-echo $SERVICE_ACCOUNT
+echo "$SERVICE_ACCOUNT"
 cd $APPCENTER_SOURCE_DIRECTORY
 curl -o google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-345.0.0-darwin-x86_64.tar.gz
 # unpack

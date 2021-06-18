@@ -46,7 +46,7 @@ cat /tmp/$CI_PIPELINE_ID_TMP.json | sed -e 's/\\\"/\"/g' > /tmp/$CI_PIPELINE_ID.
 # make sure the tool results api is enabled
 ./google-cloud-sdk/bin/gcloud services enable toolresults.googleapis.com
 # upload and run the test
-./google-cloud-sdk/bin/gcloud firebase test android run --type instrumentation --app build/app/outputs/apk/debug/app-debug.apk --test build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk --device=model=Pixel3,version=28
+./google-cloud-sdk/bin/gcloud firebase test android run --type instrumentation --app build/app/outputs/apk/debug/app-debug.apk --test build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk --device=model=Nexus5,version=23
 
 
 ######################### cleaning
